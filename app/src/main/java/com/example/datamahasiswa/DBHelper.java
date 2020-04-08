@@ -32,4 +32,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists mahasiswa");
         onCreate(db);
     }
+
+    public boolean insertContact (String nim, String nama, String phone){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nim", nim);
+        contentValues.put("nama", nama);
+        contentValues.put("phone", phone);
+        db.insert("mahasiswa", null, contentValues);
+        return true;
+    }
 }
