@@ -3,6 +3,7 @@ package com.example.datamahasiswa;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -48,5 +49,11 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from mahasiswa where id="+id+"", null);
         return res;
+    }
+
+    public int numberOfRow(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        int numRows = (int) DatabaseUtils.queryNumEntries(db, MHS_TABLE_NAME);
+        return numRows;
     }
 }
