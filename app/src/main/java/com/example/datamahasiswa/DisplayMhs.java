@@ -2,7 +2,11 @@ package com.example.datamahasiswa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.renderscript.Sampler;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DisplayMhs extends AppCompatActivity {
@@ -10,14 +14,51 @@ public class DisplayMhs extends AppCompatActivity {
     int id_To_Update;
     private DBHelper mydb;
 
-    TextView noMhs, nama, phone;
+    TextView noMhs, nama, noPhone;
+    String nim, name, phone;
+    Button btnSimpan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_mhs);
-        noMhs = (TextView) findViewById(R.id.etNIM);
-        nama  = (TextView) findViewById(R.id.etName);
-        phone = (TextView) findViewById(R.id.etPhone);
+        noMhs   = (TextView) findViewById(R.id.etNIM);
+        nama    = (TextView) findViewById(R.id.etName);
+        noPhone = (TextView) findViewById(R.id.etPhone);
+
+        mydb  = new DBHelper(this);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            int Value = extras.getInt("id");
+
+            if(Value>0){
+                //means this is the view part not the add contact part.
+                Cursor rs = mydb.getData(Value);
+                id_To_Update = Value;
+                rs.moveToFirst();
+
+                nim   = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_NIM));
+                name  = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_NAMA));
+                phone = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_PHONE));
+                if (!rs.isClosed()){
+                    rs.close();
+                }
+
+                btnSimpan = (Button) findViewById(R.id.btn1);
+                btnSimpan.setVisibility(View.INVISIBLE);
+
+                noMhs.setText((CharSequence)nim);
+                nama.setText((CharSequence)name);
+                noPhone.setText((CharSequence)phone);
+
+                noMhs.setFocusable(false);
+                nama.setFocusable(false);
+                noPhone.setFocusable(false);
+
+                noMhs.setClickable(false);
+                nama.setClickable(false);
+                noPhone.setClickable(false);
+            }
+        }
     }
 }
