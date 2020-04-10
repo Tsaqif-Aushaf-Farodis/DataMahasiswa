@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.renderscript.Sampler;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -60,5 +61,19 @@ public class DisplayMhs extends AppCompatActivity {
                 noPhone.setClickable(false);
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds to the action bar if it is present.
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            int Value = extras.getInt("id");
+            if(Value>0){
+                getMenuInflater().inflate(R.menu.menu_display,menu);
+            }else{
+                getMenuInflater().inflate(R.menu.menu_main,menu);
+            }
+        }return true;
     }
 }
