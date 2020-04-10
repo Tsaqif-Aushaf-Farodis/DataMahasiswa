@@ -52,13 +52,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public int numberOfRow(){
+    public int numberOfRows(){
         SQLiteDatabase db = this.getReadableDatabase();
         int numRows = (int) DatabaseUtils.queryNumEntries(db, MHS_TABLE_NAME);
         return numRows;
     }
 
-    public ArrayList<String> getAllContact(){
+    public ArrayList<String> getAllContacts(){
         ArrayList<String> arrayList = new ArrayList<String>();
 
         SQLiteDatabase db = this.getReadableDatabase();

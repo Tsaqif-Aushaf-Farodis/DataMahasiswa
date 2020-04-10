@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mydb = new DBHelper(this);
-        ArrayList arrayList = mydb.getAllContact();
+        ArrayList arrayList = mydb.getAllContacts();
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
 
         obj = (ListView) findViewById(R.id.lv1);

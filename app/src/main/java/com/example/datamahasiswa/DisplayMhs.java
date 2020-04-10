@@ -2,6 +2,7 @@ package com.example.datamahasiswa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.renderscript.Sampler;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 public class DisplayMhs extends AppCompatActivity {
     int from_Where_I_Am_Coming = 0;
-    int id_To_Update;
+    int id_To_Update = 0;
     private DBHelper mydb;
 
     TextView noMhs, nama, noPhone;
@@ -47,6 +48,13 @@ public class DisplayMhs extends AppCompatActivity {
 
                 btnSimpan = (Button) findViewById(R.id.btn1);
                 btnSimpan.setVisibility(View.INVISIBLE);
+                btnSimpan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i);
+                    }
+                });
 
                 noMhs.setText((CharSequence)nim);
                 nama.setText((CharSequence)name);
