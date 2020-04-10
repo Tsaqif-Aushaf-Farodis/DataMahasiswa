@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 dataBundle.putInt("id", id_To_Search);
 
                 Intent intent = new Intent(getApplicationContext(), DisplayMhs.class);
-
                 intent.putExtras(dataBundle);
                 startActivity(intent);
             }
@@ -50,5 +51,29 @@ public class MainActivity extends AppCompatActivity {
         //Inflate the menu; this adds items to the action bar  if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()){
+            case R.id.item1:Bundle dataBundle = new Bundle();
+            dataBundle.putInt("id", 0);
+
+            Intent intent = new Intent(getApplicationContext(), DisplayMhs.class);
+            intent.putExtras(dataBundle);
+            startActivity(intent);
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public boolean onKeyDown(int keycode, KeyEvent event){
+        if (keycode == KeyEvent.KEYCODE_BACK){
+            moveTaskToBack(true);
+        }
+        return super.onKeyDown(keycode, event);
     }
 }
