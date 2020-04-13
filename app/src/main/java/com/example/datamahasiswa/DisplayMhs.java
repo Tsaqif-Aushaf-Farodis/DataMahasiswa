@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DisplayMhs extends AppCompatActivity {
     int from_Where_I_Am_Coming = 0;
@@ -84,5 +85,19 @@ public class DisplayMhs extends AppCompatActivity {
                 getMenuInflater().inflate(R.menu.menu_main,menu);
             }
         }return true;
+    }
+
+    public void run(View view){
+        if (noMhs.getText().toString().equals("")||
+            nama.getText().toString().equals("")||
+            noPhone.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(),"Data Harus Diisi Semua!", Toast.LENGTH_LONG).show();
+        }else{
+            mydb.insertContact(noMhs.getText().toString(), nama.getText().toString(), noPhone.getText().toString());
+            Toast.makeText(getApplicationContext(), "Insert Data Berhasil", Toast.LENGTH_LONG).show();
+
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
     }
 }
