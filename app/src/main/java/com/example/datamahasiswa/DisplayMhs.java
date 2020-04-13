@@ -9,6 +9,7 @@ import android.renderscript.Sampler;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class DisplayMhs extends AppCompatActivity {
@@ -16,7 +17,7 @@ public class DisplayMhs extends AppCompatActivity {
     int id_To_Update = 0;
     private DBHelper mydb;
 
-    TextView noMhs, nama, noPhone;
+    EditText noMhs, nama, noPhone;
     String nim, name, phone;
     Button btnSimpan;
 
@@ -24,9 +25,9 @@ public class DisplayMhs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_mhs);
-        noMhs   = (TextView) findViewById(R.id.etNIM);
-        nama    = (TextView) findViewById(R.id.etName);
-        noPhone = (TextView) findViewById(R.id.etPhone);
+        noMhs   = (EditText) findViewById(R.id.etNIM);
+        nama    = (EditText) findViewById(R.id.etName);
+        noPhone = (EditText) findViewById(R.id.etPhone);
 
         mydb  = new DBHelper(this);
         Bundle extras = getIntent().getExtras();
