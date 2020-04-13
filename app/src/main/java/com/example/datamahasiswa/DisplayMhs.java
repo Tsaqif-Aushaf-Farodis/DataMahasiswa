@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class DisplayMhs extends AppCompatActivity {
     int from_Where_I_Am_Coming = 0;
@@ -21,11 +22,15 @@ public class DisplayMhs extends AppCompatActivity {
     EditText noMhs, nama, noPhone;
     String nim, name, phone;
     Button btnSimpan;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_mhs);
+        //toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
         noMhs   = (EditText) findViewById(R.id.etNIM);
         nama    = (EditText) findViewById(R.id.etName);
         noPhone = (EditText) findViewById(R.id.etPhone);
@@ -50,13 +55,6 @@ public class DisplayMhs extends AppCompatActivity {
 
                 btnSimpan = (Button) findViewById(R.id.btn1);
                 btnSimpan.setVisibility(View.INVISIBLE);
-                btnSimpan.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(i);
-                    }
-                });
 
                 noMhs.setText((CharSequence)nim);
                 nama.setText((CharSequence)name);
