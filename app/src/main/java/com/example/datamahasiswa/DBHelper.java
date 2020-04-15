@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "MyDBName.db";
@@ -61,6 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<String> getAllContacts(){
         ArrayList<String> arrayList = new ArrayList<String>();
 
+        hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from mahasiswa", null);
         res.moveToFirst();

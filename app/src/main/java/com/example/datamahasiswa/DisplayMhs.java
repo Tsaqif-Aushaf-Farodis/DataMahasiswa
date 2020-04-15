@@ -1,12 +1,14 @@
 package com.example.datamahasiswa;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.renderscript.Sampler;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,8 +22,8 @@ public class DisplayMhs extends AppCompatActivity {
     private DBHelper mydb;
 
     EditText noMhs, nama, noPhone;
-    String nim, name, phone;
-    Button btnSimpan;
+    //String nim, name, phone;
+    //Button btnSimpan;
     Toolbar toolbar;
 
     @Override
@@ -46,26 +48,26 @@ public class DisplayMhs extends AppCompatActivity {
                 id_To_Update = Value;
                 rs.moveToFirst();
 
-                nim   = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_NIM));
-                name  = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_NAMA));
-                phone = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_PHONE));
+                String nim   = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_NIM));
+                String name  = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_NAMA));
+                String phone = rs.getString(rs.getColumnIndex(DBHelper.MHS_COLUMN_PHONE));
                 if (!rs.isClosed()){
                     rs.close();
                 }
 
-                btnSimpan = (Button) findViewById(R.id.btn1);
+                Button btnSimpan = (Button) findViewById(R.id.btn1);
                 btnSimpan.setVisibility(View.INVISIBLE);
 
                 noMhs.setText((CharSequence)nim);
-                nama.setText((CharSequence)name);
-                noPhone.setText((CharSequence)phone);
-
                 noMhs.setFocusable(false);
-                nama.setFocusable(false);
-                noPhone.setFocusable(false);
-
                 noMhs.setClickable(false);
+
+                nama.setText((CharSequence)name);
+                nama.setFocusable(false);
                 nama.setClickable(false);
+
+                noPhone.setText((CharSequence)phone);
+                noPhone.setFocusable(false);
                 noPhone.setClickable(false);
             }
         }
